@@ -1,0 +1,28 @@
+{% extends 'agency/base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+    <h3>{% trans _("Tours") %} : </h3>
+            <div class="list-group">
+            {% for tour in all_tours %}
+                <a href="{% url 'agency:detail' tour.id %}" class="list-group-item">
+                  <img src="{{ tour.logo }}" width="600px" height="500px" display="inline">
+
+                  <h2 class="list-group-item-heading">{{ tour.name }}
+                      {% if  tour.isHot == True  %}
+                           <i class="fa fa-bomb" style="font-size:48px;color:red"></i>
+                        {% endif %}
+
+                  </h2>
+
+                  <p class="list-group-item-text">{{ tour.relaxation.name }}  {{ tour.shopping.name }} {{ tour.excursion.name }} </p>
+
+                </a>
+
+            {% endfor %}
+
+
+  </div>
+
+{% endblock %}

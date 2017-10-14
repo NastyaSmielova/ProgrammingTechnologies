@@ -1,0 +1,15 @@
+{% extends 'agency/base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <br> <br> <br> <br> <br>
+    <h2>
+       {% block name%} {% trans _("Tour Agency")%} {% endblock %}.
+    </h2>
+    <h3>
+        {% block text%}{% trans _("Discover adorable Kiev") %}.{% endblock %}
+    </h3>
+     <img class="infopicture" src="https://static.thousandwonders.net/Kiev.original.33038.jpg" >
+
+
+{% endblock %}

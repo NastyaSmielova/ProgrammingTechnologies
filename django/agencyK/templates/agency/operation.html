@@ -1,0 +1,13 @@
+{% extends 'agency/base.html' %}
+{% block content %}
+{% load i18n %}
+   <h1>
+        {% if  success == True  %}
+            <p>{% trans _("Thanks for choosing us") %}</p>
+        {% else %}
+            <p>{% trans _("Some error has occurred") %}</p>
+        {% endif %}
+   </h1>
+
+
+{% endblock %}

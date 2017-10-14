@@ -1,0 +1,40 @@
+{% extends 'agency/base.html' %}
+{% load i18n %}
+{% block content %}
+    <script>
+    function updateTotal() {
+        var x = document.getElementById("amount").value;
+        pr = {{ price }}
+        if (x > {{ tour.places }}){
+            alert("tour doesn't so much places((");
+            document.getElementById("total").innerHTML = "some error";
+        }
+        else {
+            document.getElementById("total").innerHTML =  pr  * x ;
+        }
+    }
+
+
+</script>
+   <h1>
+       {{ tour.name }}<br>
+       {% trans _("Price") %} : {{ tour.price }}<br>
+       {% trans _("Discount") %} :{{ user.discount }}<br>
+       {% trans _("Amount") %}:
+       <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+           {% csrf_token %}
+           <input name="tour_id" value={{ tour.id }} visibility: hidden>
+           <input id="amount" value="1" type="number"  min="0" max="{{tour.places }}" onchange="updateTotal()" name ="places"><br>
+        <button  type="submit" class="btn btn-default" background-color="blue" >{% trans _("Submit") %}</button>
+       </form>
+           <hr>
+         Total :<span id="total" ></span>
+   </h1>
+
+
+
+    <br>
+
+   <!-- <a href="{% url "agency:buyTour" tour.id  %}"  class="btn btn-info" role="button">Buy</a>-->
+
+{% endblock %}

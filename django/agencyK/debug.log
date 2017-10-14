@@ -1,0 +1,18 @@
+show tour
+"GET /agency/ HTTP/1.1" 302 0
+show main page
+"GET /ru/agency/ HTTP/1.1" 200 2752
+"GET /ru/agency/loginout/ HTTP/1.1" 302 0
+"GET /ru/agency/user_login/ HTTP/1.1" 200 4375
+"GET /ru/agency/register/ HTTP/1.1" 200 4675
+"POST /ru/agency/register/ HTTP/1.1" 302 0
+show tours
+"GET /ru/agency/tours/ HTTP/1.1" 200 4186
+"GET /ru/agency/tours/3/ HTTP/1.1" 200 2968
+"GET /ru/agency/buy/3/ HTTP/1.1" 200 3676
+buy 3tour id :3
+operation: success
+"POST /ru/agency/buy/3/ HTTP/1.1" 200 2554
+"GET /ru/agency/loginout/ HTTP/1.1" 200 2752
+show main page
+"GET /en/agency/ HTTP/1.1" 200 2659
