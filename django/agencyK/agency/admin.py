@@ -19,7 +19,9 @@ class CustomUserAdmin(UserAdmin):
             return list()
         return super(CustomUserAdmin, self).get_inline_instances(request, obj)
 
-
+'''
+    change the view for user information on admin site
+'''
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
 

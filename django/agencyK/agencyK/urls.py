@@ -17,6 +17,8 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf.urls.i18n import i18n_patterns
 
+#register ulr for the main part of the site
+
 urlpatterns = i18n_patterns(
     url(r'^admin/', admin.site.urls),
     url(r'^agency/', include('agency.urls')),

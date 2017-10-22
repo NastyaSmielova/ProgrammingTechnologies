@@ -5,6 +5,12 @@ from . import views
 
 app_name = 'agency'
 
+'''
+	register urls to work with
+	show main page, available tours, detail information about specific tour,buy tour
+	work with user(log in,out,register)
+'''
+
 urlpatterns = [
     url(r'^$', views.mainPage, name='mainPage'),
     url(r'^tours/$', views.IndexView.as_view(), name='index'),

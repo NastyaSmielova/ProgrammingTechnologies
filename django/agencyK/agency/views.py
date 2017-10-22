@@ -12,6 +12,12 @@ from .forms import UserForm
 
 logger = logging.getLogger("django")
 
+'''
+	create page for ordering tour
+	calculate final price with discount
+	send request to buy a tour if number of places was chosen
+'''
+
 @csrf_exempt
 def buy(request,tour_id):
     if request.method=="GET":
@@ -27,7 +33,10 @@ def buy(request,tour_id):
             })
     else: return buyTour(request, tour_id, request.POST['places'])
 
-
+'''
+	buy chosen tour with chosen number of places
+	if user is not authenticated send him  to login page
+'''
 @transaction.atomic
 @csrf_exempt
 def buyTour(request,tour_id,places):
@@ -49,7 +58,9 @@ def buyTour(request,tour_id,places):
                 logger.info("operation: failed")
                 return render(request, 'agency/operation.html', {'success':False})
 
-#log in or log out the current client
+'''
+	log in (if he currently log out) or log out (if logged in) the current client
+'''
 def loginout(request):
     if not request.user.is_authenticated():
         return redirect('agency:user_login')
@@ -57,6 +68,10 @@ def loginout(request):
          logout(request)
          return render(request,'agency/mainPage.html')
 
+'''
+	list view for showing all tours in the agency
+'''			 
+		 
 class IndexView(generic.ListView):
     template_name = "agency/index.html"
     context_object_name = 'all_tours'
@@ -64,16 +79,30 @@ class IndexView(generic.ListView):
         logger.info("show tours")
         return Tour.objects.all()
 
+		
+'''
+	show the detail information about chosen tour 
+'''			
 class DetailView(generic.DetailView):
     model = Tour
     logger.info("show tour")
     template_name = "agency/detail.html"
 
 
+'''
+	show the main page of the site
+'''		
+	
 def mainPage(request):
     logger.info("show main page")
     return render(request,'agency/mainPage.html')
 
+	
+'''
+	log in user if all data is correct,
+	or explain why the data is not ok
+'''	
+	
 @csrf_exempt
 def user_login(request):
     if request.method == "POST":
@@ -93,22 +122,38 @@ def user_login(request):
     return render(request, 'agency/login.html')
 
 
+	
+'''
+	view for work with user
+'''	
 class UserFormView(View):
     form_class = UserForm
     template_name = "agency/registration_form.html"
 
-
+	'''
+		return blanked form when user asks 
+		for registry
+	'''	
+	
     @csrf_exempt
     def get(self,request):
         form = self.form_class(None)
         return render(request,self.template_name,{'form':form})
 
+		
+	'''
+		registry new user if the input data was correct
+		and shows the error message if some error has occurred 
+	'''		
+		
     @csrf_exempt
     def post(self,request):
         form = self.form_class(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            # normalize  data from the form
+            ''' 
+				normalize  data from the form
+			'''
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user.set_password(password)
@@ -122,6 +167,7 @@ class UserFormView(View):
                     login(request,user)
                     return redirect("agency:index")
 
+					
         logger.info("some bad data have been sent")
         return render(request, self.template_name, {'form': form}, {'error_message': 'Invalid data'})
 
