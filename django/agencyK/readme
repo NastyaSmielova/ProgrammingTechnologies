@@ -1,0 +1,16 @@
+Project structure
+(implements MVC architecture):
+
+Model (folder models)  entities of the app
+View(folder templates) for rendering pages for users (html templates)
+Controller (folder views) to handle users requests and execute business logic
+
+also have folders 
+static : for images, css for pages
+migrations: database migrations (created by framework)
+locale: for translation (into russian)
+
+files 
+settings.py - for tune in all needed data
+url.py - urls for the site (user and admin part)
+debug.log - file for logging
