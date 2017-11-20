@@ -1,0 +1,23 @@
+{% extends 'agency/base.html' %}
+{% load i18n %}
+{% block content %}
+
+   <h1>
+       {{ tour.name }}
+        {% if  tour.isHot == True  %}
+           <i class="fa fa-bomb" style="font-size:48px;color:red"></i>
+        {% endif %}
+   </h1>
+   {% block trans %}{% trans _("Excursion") %} {% endblock %}:    {{ tour.excursion.name }}<br>
+   {% block relaxation %}{% trans _("Relaxation") %} {% endblock %} :  {{ tour.relaxation.name }}<br>
+   {% block shopping %}{% trans _("Shopping") %}{% endblock %} :  {{ tour.shopping.name }}<br>
+   {% block price %}{% trans _("Price") %} {% endblock %} : {{ tour.price }}<br>
+   {% block date %}{% trans _("Date") %}{% endblock %}:{{ tour.date }}<br>
+    {% block time %}{% trans _("Time") %}{% endblock %}:{{ tour.time }}
+
+    <br>
+    <img class="infopicture" src="{{ tour.logo }}">
+    {% if  tour.places > 0  %}
+    <a href="{% url "agency:buy" tour.id %}"  class="btn btn-info" role="button">{% block order %}{% trans _("Order") %}{% endblock %}</a>
+    {% endif %}
+{% endblock %}
