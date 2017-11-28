@@ -1,0 +1,64 @@
+<xs:schema
+		   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		   targetNamespace="Guns"
+		   xmlns="Guns"
+		   elementFormDefault="qualified">
+	<xs:element name="Guns">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Gun" type="Gun" minOccurs="1" maxOccurs="unbounded">
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:simpleType name= "Handy">
+		<xs:restriction base = "xs:string">
+		<xs:enumeration value = "two"/>
+		<xs:enumeration value = "one"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name= "LongRange">
+		<xs:restriction base = "xs:string">
+			<xs:enumeration value = "nearby"/>
+			<xs:enumeration value = "medium"/>
+			<xs:enumeration value = "long"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name= "Model">
+		<xs:restriction base = "xs:int">
+			<xs:pattern value ="[a-zA-Z0-9]{5,15}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name = "TTC">
+		<xs:sequence>
+			<xs:element name = "LongRange" type = "LongRange" maxOccurs="1"/>
+			<xs:element name = "EffectiveRange" type = "xs:positiveInteger" maxOccurs="1"/>
+			<xs:element name = "CagePresense" type = "xs:boolean" maxOccurs="1"/>
+			<xs:element name = "OpticsPresense" type = "xs:boolean" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name = "Gun">
+
+		<xs:sequence>
+			<xs:element name = "Handy" type= "Handy" maxOccurs="1"/>
+			<xs:element name = "Origin" type= "xs:string" maxOccurs="1"/>
+			<xs:element name = "TTC" type = "TTC" maxOccurs="1"/>
+			<xs:element name = "Material" type = "xs:string" maxOccurs="1"/>
+
+			<xs:element name= "Model" type= "Model" maxOccurs="1" />
+
+
+		</xs:sequence>
+
+
+
+
+	</xs:complexType >
+
+</xs:schema>
