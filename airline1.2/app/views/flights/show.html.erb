@@ -1,0 +1,83 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong><%= t ".Destination" %>:</strong>
+  <%= @flight.destination %>
+</p>
+
+<p>
+  <strong><%= t ".Time" %>:</strong>
+  <%= @flight.time.hour %>: <%= @flight.time.min %>
+</p>
+
+<p>
+  <strong><%= t ".Date" %>:</strong>
+  <%= @flight.date %>
+</p>
+<p>
+  <strong><%= t ".placesB" %>:</strong>
+  <%= @flight.placesBus %>
+  <strong><%= t ".price" %>:</strong>
+  <%= @flight.priceBus %>
+</p>
+<p>
+  <strong><%= t ".placesS" %>:</strong>
+  <%= @flight.placesStan %>
+  <strong><%= t ".price" %>:</strong>
+  <%= @flight.priceStan %>
+</p>
+
+
+<p>
+  <strong><%= t ".priceL" %>:</strong>
+  <%= @flight.priceLag %>
+</p>
+
+<p>
+  <strong><%= t ".priceP" %>:</strong>
+  <%= @flight.pricePriv %>
+</p>
+
+<h2>make an order</h2>
+<%= form_for([@flight,@flight.orders.build]) do |f|%>
+    <p>
+      <%= f.label :name %>
+      <%= f.text_field :name, :required => true %> <br />
+    </p>
+    <p>
+      <%= f.label :surname %>
+      <%= f.text_field :surname , :required => true %> <br />
+    </p>
+    <p>
+      <%= f.label :passport %>
+      <%= f.text_field :passport , :required => true %> <br />
+    </p>
+
+    <p>
+      <%= f.label value = "Has privilege" %>
+      <%= f.check_box :hasPriv  , :onchange => 'myFunction()',:id =>'hasPriv'%> <br />
+
+    </p>
+    <p>
+      <%= f.label value = "Has luggage" %>
+      <%= f.check_box :hasLag , :onchange => 'myFunction()', :id =>'hasLag'%> <br />
+
+    </p>
+    <%= f.label :category %>
+    <%= f.select :category, [["Business",1],["Standard",0]] , :onchange => 'myFunction()', :id => 'chcategory'%>
+
+    <p> <%= f.submit %></p>
+<%end%>
+<script>
+    function myFunction() {
+        total = 0;
+        if ( document.getElementById("hasLag").checked) total += <%= @flight.priceLag %> ;
+        if ( document.getElementById("hasPriv").checked) total += <%= @flight.pricePriv %> ;
+        // if ( (document.getElementById("chcategory").value) != 1) total += 1 ;
+
+        document.getElementById("order").value =  (total);
+    }
+</script>
+
+
+
+<%= link_to 'Back', flights_path %>

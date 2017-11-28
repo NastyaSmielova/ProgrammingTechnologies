@@ -1,0 +1,25 @@
+ru:
+  flights:
+       index:
+           Destination: "Город"
+           title: "Рейсы"
+           Time: "Время"
+           Date: "Дата"
+           placesB: "места бизнес"
+           placesS: "места економ"
+           priceB: "цена бизнес"
+           priceS: "цена економ"
+           priceL: "цена багаж"
+           priceP: "цена привилегии"
+
+       show:
+                  Destination: "Город"
+                  title: "Рейсы"
+                  Time: "Время"
+                  Date: "Дата"
+                  placesB: "места бизнес"
+                  placesS: "места економ"
+                  priceB: "цена бизнес"
+                  priceS: "цена економ"
+                  priceL: "цена багаж"
+                  priceP: "цена привилегии"
