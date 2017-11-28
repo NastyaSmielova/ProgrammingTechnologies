@@ -1,0 +1,25 @@
+require_relative 'domP'
+
+include Nokogiri
+require_relative 'saxP'
+
+
+xsd = Nokogiri::XML::Schema(File.read('xml/guns.xsd'))
+doc = Nokogiri::XML(File.read('xml/guns.xml'))
+
+
+puts("Parsed by DOM:")
+dom_parser = DOM.new(doc)
+guns = dom_parser.parse
+puts(guns)
+
+
+
+sax_parser = SAX.new
+parser = XML::SAX::Parser.new(sax_parser)
+gunsSAX = parser.parse_file('xml/guns.xml')
+puts(gunsSAX)
+
+puts("\n\nSort dom by origin\n\n")
+puts (guns.sort_by(&:origin))
+

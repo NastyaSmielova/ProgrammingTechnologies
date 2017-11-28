@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+	<Guns xmlns:xsi="Guns"  		xmlns="Guns"  >
+		<Gun>
+			<Handy>one</Handy>
+			<Origin>Japan</Origin>
+			<TTC>
+				<LongRange>medium</LongRange>
+				<EffectiveRange>223</EffectiveRange>
+				<CagePresense>1</CagePresense>
+				<OpticsPresense>false</OpticsPresense>
+			</TTC>
+			<Material>silver</Material>
+			<Model>308322</Model>
+
+		</Gun>
+
+	<Gun>
+		<Handy>one</Handy>
+		<Origin>Avocado</Origin>
+		<TTC>
+			<LongRange>medium</LongRange>
+			<EffectiveRange>293</EffectiveRange>
+			<CagePresense>1</CagePresense>
+			<OpticsPresense>0</OpticsPresense>
+		</TTC>
+		<Material>golden</Material>
+		<Model>30892</Model>
+
+	</Gun>
+
+	<Gun>
+		<Handy>two</Handy>
+		<Origin>India</Origin>
+		<TTC>
+			<LongRange>long</LongRange>
+			<EffectiveRange>213</EffectiveRange>
+			<CagePresense>false</CagePresense>
+			<OpticsPresense>true</OpticsPresense>
+		</TTC>
+		<Material>silver</Material>
+		<Model>787888</Model>
+
+	</Gun>
+	
+	</Guns>
